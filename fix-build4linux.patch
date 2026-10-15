@@ -1,0 +1,45 @@
+diff --git a/Cargo.lock b/Cargo.lock
+index 4990499..6e0c4fe 100644
+--- a/Cargo.lock
++++ b/Cargo.lock
+@@ -3427,6 +3427,7 @@ dependencies = [
+  "qoi",
+  "ravif",
+  "rayon",
++ "rgb",
+  "tiff",
+  "zune-core 0.5.3",
+  "zune-jpeg 0.5.15",
+diff --git a/crates/ibis-office-app/Cargo.toml b/crates/ibis-office-app/Cargo.toml
+index 14a6500..c9c0a1f 100644
+--- a/crates/ibis-office-app/Cargo.toml
++++ b/crates/ibis-office-app/Cargo.toml
+@@ -20,6 +20,7 @@ ibis-pptx.workspace = true
+ ibis-emf.workspace = true
+ ibis-eot.workspace = true
+ gpui-kit.workspace = true
++image = "0.25.10"
+ lyon_tessellation = "1.0"
+ log = "0.4"
+ # Pair kerning of the typeface drawn, for Word's w:kern (docx layout). The
+diff --git a/crates/ibis-office-app/build.rs b/crates/ibis-office-app/build.rs
+index f948a50..4a135e9 100644
+--- a/crates/ibis-office-app/build.rs
++++ b/crates/ibis-office-app/build.rs
+@@ -64,6 +64,7 @@ fn app_version() {
+         ("windows", _) => "Windows",
+         ("macos", _) => "macOS",
+         (_, "wasm") => "wasm",
++        ("linux", _) => "Linux",
+         (os, _) => panic!("version.txt has no line for {os}"),
+     };
+     let version = text
+diff --git a/version.txt b/version.txt
+index 7dc1412..e7daa92 100644
+--- a/version.txt
++++ b/version.txt
+@@ -1,3 +1,4 @@
+ Windows	0.8.1
+ macOS	0.8.1
+ wasm	0.8.1
++Linux	0.8.1
